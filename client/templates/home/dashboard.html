@@ -1,0 +1,54 @@
+<h2> Dashboard </h2>
+
+<hr />
+
+<button class="btn btn-primary" data-ng-click="initWidgetPanel()">
+    <span data-ng-if="!data.widgetPanelEnabled">Open Widget Panel</span>
+    <span data-ng-if="data.widgetPanelEnabled">Hide Widget Panel</span>
+    <i class="fa fa-chevron-circle-up" data-ng-if="data.widgetPanelEnabled"></i>
+    <i class="fa fa-chevron-circle-down" data-ng-if="!data.widgetPanelEnabled"></i>
+</button>
+
+<span data-ng-if="data.addingWidgetIsInProgress" style="margin-left: 30px;">
+    <i class="fa fa-circle-o-notch fa-spin fa-lg"></i>
+    <span> Loading...</span>
+</span>
+
+<div id="widget-panel" data-ng-if="data.widgetPanelEnabled">
+    <p>Click on any of the item to add it to your page</p>
+
+    <div data-ng-repeat="widget in widgetCollection" class="app">
+        <i class="fa {{widget.iconClass}}"></i>
+        <a class="app-title" data-ng-bind="widget.title" data-ng-click="addWidgetToDashboard(widget)"></a>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<ul id="widget-container">
+    <li data-ng-repeat="widget in widgets" class="widget"
+        data-unique-id="{{widget.uniqueId}}"
+        data-widget-type="{{widget.widgetType}}"
+        data-title="{{widget.title}}">
+
+        <div class="widget-header">
+            <div class="widget-title" data-ng-bind="widget.title"></div>
+            <div class="textRight">
+                <i class="fa fa-edit pointer" data-ng-click="initEditableWidget(widget)"></i>
+                <i class="fa fa-chevron-circle-up pointer"></i>
+                <i class="fa fa-times pointer" data-ng-click="discardWidgetFromDashboard($index)"></i>
+            </div>
+        </div>
+        <div class="widget-content" data-ng-if="!widget.loaded">
+            <p>Loading...</p>
+        </div>
+        <div class="widget-content" data-ng-bind-html="deliberatelyTrustDangerousSnippet(widget.widgetData.html)"></div>
+    </li>
+</ul>
+
+<div class="clearfix"></div>
+
+include ../modals/htmlWidgetEditModal
+include ../modals/githubWidgetEditModal
+include ../modals/weatherWidgetEditModal
+include ../modals/rssWidgetEditModal

@@ -1,0 +1,29 @@
+{
+  "name": "Dropthings-Prototype",
+  "version": "1.0.0",
+  "authors": "Shibbir Ahmed <shibbir.cse@gmail.com>",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0",
+    "toastr": "~2.0.3",
+    "angular": "~1.2.20",
+    "font-awesome": "~4.1.0",
+    "modernizr": "~2.8.3",
+    "angular-sanitize": "~1.2.20",
+    "lodash": "~2.4.1",
+    "angular-route": "~1.2.20"
+  }
+}
