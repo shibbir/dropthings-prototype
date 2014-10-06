@@ -1,4 +1,122 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Lucida Sans Unicode','Lucida Grande',arial,helvetica,sans-serif;
 }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+
+.btn, input, textarea, select {
+    border-radius: 0 !important;
+}
+
+/***************************** START HELPER CSS *******************************/
+.textRight {
+    text-align: right;
+}
+
+.pointer {
+    cursor: pointer;
+}
+/***************************** END HELPER CSS *******************************/
+
+#toast-container > div {
+    -webkit-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    box-shadow: none !important;
+    -ms-opacity: 1 !important;
+    opacity: 1 !important;
+    width: 335px !important;
+}
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+#widget-container {
+    margin-top: 10px;
+}
+
+#widget-container ul {
+    padding-left: 15px;
+}
+
+.widget li a {
+    color: green;
+}
+
+.widget:hover {
+    border: 1px solid #999999;
+}
+
+.widget .widget-content {
+    padding: 5px;
+    font-size: 12px;
+}
+
+.widget {
+    float: left;
+    border: 1px solid #efefef;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    width: 25%;
+    min-height: 252px;
+    background-color: #ffffff;
+}
+
+li.widget {
+    list-style-type: none;
+}
+
+.widget-header {
+    padding: 10px;
+    background-color: #eef0ee;
+    color: #006400;
+    font-weight: bold;
+    position: relative;
+}
+
+.widget-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.tile-content-main {
+    overflow: hidden;
+    position: relative;
+}
+
+/**************************** START WIDGET PANEL ******************************/
+
+#widget-panel {
+    background-color: #b2dd80;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.app {
+    cursor:pointer;
+    float: left;
+    margin-right: 70px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.app .app-title {
+    text-align: center;
+}
+
+/***************************** END WIDGET PANEL *******************************/

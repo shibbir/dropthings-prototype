@@ -1,0 +1,33 @@
+extends ../layouts/master
+block content
+
+    div.row
+        div.col-md-12
+            section#localLoginForm
+                form.form-horizontal(role="form", action="/login" method="POST")
+                    h4.col-sm-offset-1
+                        i.fa.fa-sign-in
+                        span &nbsp;Use a local account to log in.
+                    hr
+
+                    if (error.length > 0)
+                        div.alert.alert-danger
+                            span= error
+
+                    div.form-group
+                        label.col-sm-2.control-label(for="email") Email
+                        div.col-md-4
+                            input.form-control#email(type="email", name="email")
+
+                    div.form-group
+                        label.col-sm-2.control-label(for="password") Password
+                        div.col-md-4
+                            input.form-control#password(type="password", name="password")
+
+                    div.form-group
+                        div.col-sm-offset-2.col-sm-4
+                            button.btn.btn-success(type="submit")
+                                i.fa.fa-lock
+                                span &nbsp; Log in
+                    p.col-sm-offset-1
+                        a(href="/register") Register if you don't have a local account.

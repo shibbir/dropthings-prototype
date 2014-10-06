@@ -9,11 +9,8 @@ require("./server/config/passport")(passport);
 
 var app = require("./server/config/express")(passport);
 
-require("./server/api/routes/widgetServiceRoutes")(app);
-
-app.route("/").get(function(req, res) {
-    res.sendfile("./server/views/layouts/master.html");
-});
+require("./server/routes/welcomeRoutes")(app, passport);
+require("./server/routes/widgetServiceRoutes")(app);
 
 //var seeder = require("./server/config/seeder");
 //seeder.widgetSeeder();

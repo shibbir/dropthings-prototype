@@ -10,13 +10,18 @@
                 return apiService.get(widgetsUrl);
             };
 
+            var getRegisteredWidgets = function() {
+                return apiService.get("/api/account/widgets");
+            };
+
             var updateWidgets = function(widgets) {
                 return apiService.patch(widgetsUrl, { widgets: widgets });
             };
 
             return {
                 getWidgets: getWidgets,
-                updateWidgets: updateWidgets
+                updateWidgets: updateWidgets,
+                getRegisteredWidgets: getRegisteredWidgets
             };
         }
     ]);

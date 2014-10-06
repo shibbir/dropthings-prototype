@@ -1,0 +1,18 @@
+div(class="modal fade", id="weatherWidgetEditModal", tabindex="-1", role="dialog", aria-labelledby="Edit Weather Widget", aria-hidden="true")
+    div(class="modal-dialog")
+        div(class="modal-content")
+            div(class="modal-header")
+                button(type="button", class="close", data-dismiss="modal")
+                    span(aria-hidden="true") &times;
+                    span(class="sr-only") Close
+                h4(class="modal-title") Edit Widget
+            div(class="modal-body")
+                form(role="form")
+                    div(class="row")
+                        div(class="col-md-6")
+                            div(class="form-group")
+                                label City
+                                input(type="text", class="form-control", data-ng-model="modifiedWeatherWidget.widgetData.cityName")
+            div(class="modal-footer")
+                button(type="button", class="btn btn-default", data-dismiss="modal") Close
+                button(type="button", class="btn btn-primary", data-ng-click="updateWidget()") Save changes

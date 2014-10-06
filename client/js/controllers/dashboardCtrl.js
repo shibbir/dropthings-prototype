@@ -1,5 +1,6 @@
 (function(app) {
     "use strict";
+
     app.controller("DashboardCtrl", [
         "$scope", "apiService", "$sce", "widgetService", "widgetHtmlBuilderService", function($scope, apiService, $sce, widgetService, widgetHtmlBuilderService) {
             $scope.widgetCollection = [];
@@ -12,7 +13,7 @@
             };
 
             $scope.init = function() {
-                widgetService.getWidgets().success(function(widgets) {
+                widgetService.getRegisteredWidgets().success(function(widgets) {
                     _.forEach(widgets, function(widget) {
                         if(widget.widgetType.toLowerCase() === "github") {
                             widgetHtmlBuilderService.buildHtmlForGithubWidget(widget, function(html) {
@@ -35,20 +36,20 @@
                     });
 
                     $scope.widgets = widgets;
-                    $("#widget-container").sortable({
-                        placeholder: "ui-state-highlight",
-                        cursor: "move",
-                        opacity: 0.8,
-                        revert: true,
-                        scroll: false,
-                        start: function(event, ui) {
-                            ui.item.startPos = ui.item.index();
-                        },
-                        stop: function(event, ui) {
-                            console.log("Start position: " + ui.item.startPos);
-                            console.log("New position: " + ui.item.index());
-                        }
-                    }).disableSelection();
+//                    $("#widget-container").sortable({
+//                        placeholder: "ui-state-highlight",
+//                        cursor: "move",
+//                        opacity: 0.8,
+//                        revert: true,
+//                        scroll: false,
+//                        start: function(event, ui) {
+//                            ui.item.startPos = ui.item.index();
+//                        },
+//                        stop: function(event, ui) {
+//                            console.log("Start position: " + ui.item.startPos);
+//                            console.log("New position: " + ui.item.index());
+//                        }
+//                    }).disableSelection();
                 });
             }();
 
