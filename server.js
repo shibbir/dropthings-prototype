@@ -10,7 +10,8 @@ require("./server/config/passport")(passport);
 var app = require("./server/config/express")(passport);
 
 require("./server/routes/welcomeRoutes")(app, passport);
-require("./server/routes/widgetServiceRoutes")(app);
+require("./server/routes/userRoutes")(app);
+require("./server/routes/widgetRoutes")(app);
 
 //var seeder = require("./server/config/seeder");
 //seeder.widgetSeeder();

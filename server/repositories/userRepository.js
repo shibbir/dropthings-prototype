@@ -1,17 +1,63 @@
-var User = require("../models/userModel");
+var User = require("../models/userModel"),
+    widgetManager = require("./widgetRepository");
 
-exports.widgets = function(req, res) {
+exports.widgets = function(email, callback) {
     "use strict";
 
-    if(req.isAuthenticated()) {
-        User.findOne({email: req.user.email}, "widgets", function(err, docs) {
-            if (err) {
-                res.status(500).json(err);
-            } else {
-                res.status(200).json(docs);
+    User.findOne({ email: email }, "widgets", function(err, docs) {
+        if (err) {
+            callback(null, err);
+        } else {
+            callback(docs.widgets);
+        }
+    });
+};
+
+exports.widget = function(email, widgetId, callback) {
+    User.findOne({ email: email, "widgets.widgetId": widgetId }, { "widgets.$": 1 }, function (err, doc) {
+        if (err) {
+            callback(null, err);
+        }
+        callback(doc.widgets[0]);
+    });
+};
+
+exports.addNewWidget = function(email, widget, callback) {
+    widgetManager.prepareNewWidget(widget, function(preparedWidget) {
+        User.update(
+            { email: email },
+            { $push: { widgets: preparedWidget } },
+            function (err) {
+                if (err) {
+                    callback(null, err);
+                } else {
+                    callback(preparedWidget);
+                }
             }
-        });
-    } else {
-        res.status(401).json({ message: "Unauthorized access is not allowed!" });
-    }
+        );
+    });
+};
+
+exports.deleteWidget = function(email, widgetId, callback) {
+    User.findOne({ email: email, "widgets.widgetId": widgetId }, { "widgets.$": 1 }).exec(function(err, doc) {
+        if (err) {
+            callback(err);
+        } else {
+            if(doc.widgets[0]) {
+                User.update(
+                    { email: email },
+                    { $pull: { widgets: doc.widgets[0] } },
+                    function (err) {
+                        if (err) {
+                            callback(err);
+                        } else {
+                            callback();
+                        }
+                    }
+                );
+            } else {
+                callback();
+            }
+        }
+    });
 };

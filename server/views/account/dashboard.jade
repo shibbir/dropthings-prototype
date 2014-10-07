@@ -5,40 +5,38 @@ block content
     hr
 
     div(data-ng-controller="DashboardCtrl")
-        button(class="btn btn-primary", data-ng-click="initWidgetPanel()")
+        button.btn.btn-primary(data-ng-click="initWidgetPanel()")
             span(data-ng-if="!data.widgetPanelEnabled") Open Widget Panel &nbsp;
             span(data-ng-if="data.widgetPanelEnabled") Hide Widget Panel &nbsp;
-            i(class="fa fa-chevron-circle-up", data-ng-if="data.widgetPanelEnabled")
-            i(class="fa fa-chevron-circle-down", data-ng-if="!data.widgetPanelEnabled")
+            i.fa.fa-chevron-circle-up(data-ng-if="data.widgetPanelEnabled")
+            i.fa.fa-chevron-circle-down(data-ng-if="!data.widgetPanelEnabled")
 
         span(data-ng-if="data.addingWidgetIsInProgress", style="margin-left: 30px;")
-            i(class="fa fa-circle-o-notch fa-spin fa-lg")
+            i.fa.fa-circle-o-notch.fa-spin.fa-lg
             span &nbsp;Loading...
 
-        div(id="widget-panel", data-ng-if="data.widgetPanelEnabled")
+        div#widget-panel.clearfix(data-ng-if="data.widgetPanelEnabled")
             p Click on any of the item to add it to your page
-            div(data-ng-repeat="widget in widgetCollection", class="app")
-                i(class="fa {{widget.iconClass}}") &nbsp;
-                a(class="app-title", data-ng-bind="widget.title", data-ng-click="addWidgetToDashboard(widget)")
-            div(style="clear:both;")
+            div.app(data-ng-repeat="widget in widgetCollection")
+                i.fa(class="{{widget.iconClass}}") &nbsp;
+                a.app-title(data-ng-bind="widget.title", data-ng-click="addWidgetToDashboard(widget)")
 
-        div(id="widget-container")
-            div(data-ng-repeat="widget in widgets"
-            class="widget"
+        div#widget-container
+            div.widget(data-ng-repeat="widget in widgets"
             data-unique-id="{{widget.uniqueId}}"
             data-widget-type="{{widget.widgetType}}"
             data-title="{{widget.title}}")
-                div(class="widget-header")
-                    div(class="widget-title", data-ng-bind="widget.title")
-                    div(class="textRight")
-                        i(class="fa fa-edit pointer", data-ng-click="initEditableWidget(widget)") &nbsp;
-                        i(class="fa fa-chevron-circle-up pointer") &nbsp;
-                        i(class="fa fa-times pointer", data-ng-click="discardWidgetFromDashboard($index)")
-                div(class="widget-content", data-ng-if="!widget.loaded")
+                div.widget-header
+                    div.widget-title(data-ng-bind="widget.title")
+                    div.textRight
+                        i.fa.fa-edit.pointer(data-ng-click="initEditableWidget(widget)") &nbsp;
+                        i.fa.fa-chevron-circle-up.pointer &nbsp;
+                        i.fa.fa-times.pointer(data-ng-click="discardWidgetFromDashboard($index)")
+                div.widget-content(data-ng-if="!widget.loaded")
                     p Loading...
-                div(class="widget-content", data-ng-bind-html="deliberatelyTrustDangerousSnippet(widget.widgetData.html)")
+                div.widget-content(data-ng-bind-html="deliberatelyTrustDangerousSnippet(widget.widgetData.html)")
 
-        div(class="clearfix")
+        div.clearfix
 
         include ../partials/htmlWidgetEditModal
         include ../partials/githubWidgetEditModal

@@ -1,8 +1,8 @@
 (function(app) {
     "use strict";
 
-    app.controller("DashboardCtrl", [
-        "$scope", "apiService", "$sce", "widgetService", "widgetHtmlBuilderService", function($scope, apiService, $sce, widgetService, widgetHtmlBuilderService) {
+    app.controller("DashboardCtrl", ["$scope", "apiService", "$sce", "widgetService", "widgetHtmlBuilderService", "notifierService",
+        function($scope, apiService, $sce, widgetService, widgetHtmlBuilderService, notifierService) {
             $scope.widgetCollection = [];
             $scope.data = {
                 widgetPanelEnabled: false
@@ -59,7 +59,7 @@
                 } else {
                     $scope.data.widgetPanelEnabled = true;
                     if(!$scope.widgetCollection.length) {
-                        apiService.get("/api/widgets").success(function(data) {
+                        apiService.get("/apps").success(function(data) {
                             $scope.widgetCollection = data;
                         });
                     }
@@ -68,7 +68,8 @@
 
             $scope.addWidgetToDashboard = function(widget) {
                 $scope.data.addingWidgetIsInProgress = true;
-                apiService.post("/api/widgets", widget).success(function(newWidget) {
+
+                apiService.post("/users/shibbir.cse@gmail.com/widgets", widget).success(function(newWidget) {
                     if(widget.widgetType.toLowerCase() === "github") {
                         widgetHtmlBuilderService.buildHtmlForGithubWidget(newWidget, function(html) {
                             newWidget.widgetData.html = html;
@@ -100,8 +101,9 @@
 
             $scope.discardWidgetFromDashboard = function(index) {
                 if(confirm("Are you sure?")) {
-                    apiService.remove("/api/widgets/" + $scope.widgets[index].uniqueId).success(function() {
+                    apiService.remove("/users/shibbir.cse@gmail.com/widgets/" + $scope.widgets[index].widgetId).success(function() {
                         $scope.widgets.splice(index, 1);
+                        notifierService.notifySuccess("Widget removed successfully.");
                     });
                 }
             };

@@ -4,14 +4,14 @@
     app.factory("widgetService", [
         "apiService", function(apiService) {
 
-            var widgetsUrl = "/api/widgets";
+            var widgetsUrl = "/apps";
 
             var getWidgets = function() {
                 return apiService.get(widgetsUrl);
             };
 
             var getRegisteredWidgets = function() {
-                return apiService.get("/api/account/widgets");
+                return apiService.get("/users/shibbir.cse@gmail.com/widgets");
             };
 
             var updateWidgets = function(widgets) {

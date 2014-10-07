@@ -49,7 +49,7 @@ var widgets = [
 
 var widgetCollection = [
     {
-        uniqueId: "53c940bfa48d859e87400a6d",
+        widgetId: "53c940bfa48d859e87400a6d",
         widgetType: widgets[0].widgetType,
         title: widgets[0].title,
         widgetData: {
@@ -60,7 +60,7 @@ var widgetCollection = [
         }
     },
     {
-        uniqueId: "53c940dba48d859e87400a6e",
+        widgetId: "53c940dba48d859e87400a6e",
         widgetType: widgets[2].widgetType,
         title: widgets[2].title,
         position: {

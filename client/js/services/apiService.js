@@ -17,14 +17,7 @@
             };
 
             var patch = function(url, data) {
-                return $http({
-                    url: url,
-                    method: "PATCH",
-                    data: data,
-                    headers: {
-                        "Content-Type": "application/json;charset=utf-8"
-                    }
-                });
+                return $http.patch(url, data, config);
             };
 
             var remove = function(url, config) {

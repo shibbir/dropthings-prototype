@@ -5,6 +5,7 @@
   "main": "server.js",
   "authors": "Shibbir Ahmed <shibbir.cse@gmail.com>",
   "scripts": {
+    "postinstall": "node_modules/.bin/bower install",
     "test": "mocha",
     "start": "nodemon server.js"
   },
@@ -25,6 +26,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "bower": "^1.3.12",
     "del": "^0.1.3",
     "gulp": "^3.8.8",
     "gulp-autoprefixer": "^1.0.1",

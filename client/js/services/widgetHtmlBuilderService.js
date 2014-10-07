@@ -5,7 +5,7 @@
 
         var buildHtmlForGithubWidget = function(widget, callback) {
             apiService.get(widget.widgetData.githubRepoUrl).success(function(repos) {
-                var html = "<p>List of repositories by <strong>" + widget.widgetData.githubUsername + "</strong>:</p>";
+                var html = "<p>List of public repositories by <strong>" + widget.widgetData.githubUsername + "</strong>:</p>";
                 html += "<ul>";
                 _.forEach(repos, function(repo) {
                     html += "<li><a href='" + repo.html_url + "'>" + repo.html_url + "</a></li><br />";
@@ -16,7 +16,7 @@
         };
 
         var buildHtmlForRssWidget = function(widget, callback) {
-            apiService.get("/api/rss/" + widget.uniqueId).success(function(articles) {
+            apiService.get("/users/shibbir.cse@gmail.com/widgets/" + widget.widgetId).success(function(articles) {
                 var html = "<ul>";
                 _.forEach(articles, function(article) {
                     html += "<li><a href='" + article.link + "'>" + article.title + "</a></li><br />";
@@ -30,7 +30,7 @@
         };
 
         var buildHtmlForWeatherWidget = function(widget, callback) {
-            apiService.get(widget.widgetData.weatherApi).success(function(weatherData) {
+            apiService.get("/users/shibbir.cse@gmail.com/widgets/" + widget.widgetId).success(function(weatherData) {
                 var html = "<p>Weather Report for <strong>" + widget.widgetData.cityName + "</strong>:</p>";
                 if(weatherData.cod === "404") {
                     html += weatherData.message;

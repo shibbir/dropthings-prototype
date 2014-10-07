@@ -3,7 +3,7 @@
 var Widget = require("../models/widgetModel"),
     mongoose = require("mongoose");
 
-exports.widgets = function(req, res) {
+exports.apps = function(req, res) {
     Widget.find({}, "-__v", function(err, docs) {
         if (err) {
             res.status(500).json(err);
@@ -15,7 +15,7 @@ exports.widgets = function(req, res) {
 
 exports.prepareNewWidget = function(widget, callback) {
     var preparedWidget = {
-        uniqueId: mongoose.Types.ObjectId().toString(),
+        widgetId: mongoose.Types.ObjectId().toString(),
         title: widget.title,
         widgetType: widget.widgetType,
         widgetData: {}
